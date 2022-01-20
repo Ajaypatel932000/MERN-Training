@@ -1,0 +1,17 @@
+table,td,th{
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    text-align: left;
+    
+
+}
+th{
+    background-color: rgb(238, 237, 237);
+}
+tr.gray{
+    background-color: rgb(238, 237, 237);
+}
+table{
+    width: 40%;
+}
