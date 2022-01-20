@@ -1,0 +1,71 @@
+div.inner{
+   border: 2px solid black;
+   height: 50%;
+   width: 50%;
+   display: inline-block;
+   margin-left: 300px;
+   margin-top: 20px;
+   border-radius: 5px;
+   background-color: #f2f2f2;
+   padding: 10px;
+
+}
+input[type=text],input[type=tel],input[type=email],textarea,select{
+  
+    width: 100%;
+    padding: 5px 5px;
+    margin: 10px 0px;   /* (top-bottom) (left-right) */
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: inline-block;
+  
+}
+input[type=radio]{
+  
+    padding: 5px 5px;
+    margin: 12px 10px;   /* (top-bottom) (left-right) */
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+/* input[type=email]{
+  
+    width: 100%;
+    padding: 5px 5px;
+    margin: 10px 0px;    (top-bottom) (left-right) 
+    border-radius: 4px;
+    display: inline-block;
+    box-sizing: border-box;
+} */
+
+
+input[type=date]{
+  
+    width: 100%;
+    padding: 5px 5px;
+    margin: 10px 0px;   /* (top-bottom) (left-right) */
+    border-radius: 4px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+input[type=submit]{
+    width: 100%;
+    background-color: #4c77af;
+    color: white;
+    padding: 10px 10px;
+    margin: 8px 0px;
+    border-radius: 4px;
+    cursor: pointer; /*  it will allow to pointer like hand */
+}
+
+input[type=submit]:hover {
+    background-color: #2854a7;
+  }
+  
+
+fieldset
+{
+    margin: 20px;
+
+}

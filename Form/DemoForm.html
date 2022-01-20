@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="formCss.css">
+
+</head>
+<body>
+    <div style="overflow-x: auto;">
+        <div class="inner">
+    <form>
+        <fieldset>
+            <legend>Registration</legend>
+          <lable for="fname">First Name :</lable><br>
+          <input type="text" placeholder="First Name " name="fn"><br>
+       
+          <label for="lname">Last Name :</label><br>
+          <input type="text" placeholder="Last Name " name="ln"><br>
+
+          <label for="email">Email :</label> <br>
+          <input type="email" placeholder="Email " name="email"><br>
+          
+          <label for="phoneNumber">Mobile Number :</label><br>
+          <input type="tel" placeholder="Mobile Number" name="nm"><br>
+
+          <label for="gender"> Gender : </label><br>
+          <input type="radio" name="gender"> Male 
+          <input type="radio" name="gender"> Female 
+          <input type="radio" name="gender"> Other <br>
+
+          <label for="birthday">Birthday :</label><br>
+          <input type="date" name="bdate" ><br>
+
+
+          <label for="country">Country :</label><br>
+          <select>
+              <option vallue="Select" selected>Select</option>
+              <option value="India">India</option>
+              <option value="South Africa">South Africa</option>
+              <option value="France">France</option>
+              <option value="Finland">Finland</option>
+          </select>
+          <br>
+
+         <label for="addLine1">Address Line 1 :</label><br>
+         <textarea  name="textarea1" rows="1" cols="20"></textarea> <br>
+        
+         <label for="addLine2">Address Line 2 :</label><br>
+         <textarea name="textarea2" rows="1" cols="20"></textarea><br/>
+
+        
+         <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+</div>
+</div>
+</body>
+</html>
