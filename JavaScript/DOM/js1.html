@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>   
+</head>
+<body>
+    <p id="para2"></p>
+    <button onclick="insertValue()">ClickMe</button>
+    <script src="externJs.js"></script>
+
+    <button onclick="helloWorld()">External JavaScript</button>
+    <p id="para"></p>
+
+    <button onclick="window.print()">Print into Printer</button>
+    <script>
+        car="abc";
+        var car;
+
+        document.write(car);
+        document.write('<br>');
+        var v=200
+        
+        {
+            let x=20;
+            document.write("local "+x + ' '+v);
+        }
+        document.write("<br>typeof :"+(typeof 20));
+        document.write("<br>typeof :"+(typeof false));
+        document.write("<br>global  scope   "+ v);
+    </script>
+</body>
+</html>

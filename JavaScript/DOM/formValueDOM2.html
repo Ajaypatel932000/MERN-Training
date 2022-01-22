@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+   <script>
+       
+        function getCube()
+        {
+            var num=document.getElementById("num").value;
+             window.alert("Hello "+(num*num*num));
+        }
+   </script>
+
+   <form name="form1">
+       Enter Name : <input type="number" id="num">
+       <input type="button" onclick="getCube()" value="Print Value" />
+
+   </form>
+   <script type="text/javascript">  
+    function totalelements()  
+    {  
+    var allgenders=document.getElementsByName("gender").value;  
+    alert("Total Genders:"+allgenders);  
+    }  
+    </script>  
+    <form>  
+        Male:<input type="radio" name="gender" value="male">  
+ 
+    Female:<input type="radio" name="gender" value="female">  
+      
+    <input type="button" onclick="totalelements()" value="Total Genders">  
+    </form>  
+</body>
+</html>

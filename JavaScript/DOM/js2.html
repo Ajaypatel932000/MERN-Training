@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const person={
+            firstName:"Ajay",
+            lastName:"Patel",
+            id:44,
+            fullName:function(){
+                return this.firstName+" "+this.lastName;
+            }
+        };
+
+        document.write("full name"+person.fullName());
+        document.write(`<br> ${person.firstName} is Good boy.`);
+
+        for(let x in person)
+        {
+            document.writeln(person[x]);
+        }
+    </script>
+    
+</body>
+</html>

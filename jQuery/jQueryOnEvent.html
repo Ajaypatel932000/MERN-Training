@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+           
+             $("p").on("click",function(){
+                 $(this).hide();
+             })
+        })
+
+        $(document).ready(function(){
+            $("h1").on({
+                mouseenter:function(){
+                    $(this).css("font-size","30px")
+                },
+                mouseleave:function(){
+                    $(this).css("font-size","15px")
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <p>Click Me </p>
+    <p>Click Me and Hide My self</p>
+
+    <h1>Give me pardon</h1>
+    <h1>I am Innocent</h1>
+    <h1>I am not Insane</h1>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.0.min.js"> </script>
+    <script>
+         $(document).ready(function(){
+            $("button").click(function(){
+
+                $("h1.mycls").css("background-color","green");
+            })
+        })
+
+        $(document).ready(function(){
+            $("h1").mouseenter(function(){
+
+                $("h1:first").css("background","pink")
+            })
+        })
+        $(document).ready(function(){
+            $("h1").mouseleave(function(){
+
+                $("h1:first").css("background","white")
+            })
+        })
+
+
+    </script>
+</head>
+<body>
+    <h1>This is heading </h1>
+    <h1 class="mycls">I required pardon.</h1>
+    <h1>Moreover, furthermore</h1>
+
+    <button>Click</button>
+</body>
+</html>
