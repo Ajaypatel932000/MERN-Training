@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+         
+         $(document).ready(function(){
+             $("#btn1").click(function(){
+                 $.get("http://localhost:8181/RESTDemo/webapi/myresource/getsample",function(data,status){
+                     alert("Data "+data+"\nStatus :"+status);
+                     $(".data").append("Name is "+data.name+"<br> id :"+data.id+"<br> College :"+data.clg);
+
+                 })
+
+             })
+         })
+         $(document).ready(function(){
+             $(".btn").click(function(){
+                 $.post("http://localhost:8181/RESTDemo/webapi/myresource/getDetails",
+                 { // data pass using url
+                    name:"I am Innocent",
+                    city:"Mumbai"
+
+                 },function(data,status){
+
+                     alert("Data :"+data+"\n Status :"+status);
+                     $("#data").append("Name is "+data.name+"<br> id :"+data.id+"<br> College :"+data.clg+"<br> City :"+data.city+"<br>");
+
+                 })
+
+             })
+         })
+        
+         
+    </script>
+
+</head>
+<body>
+    
+    <h1 class="data"></h1>
+    <h1 id="data"></h1>
+
+    <button id="btn1">GET Request</button>
+    <button class="btn">POST Request</button>
+            
+</body>
+</html>

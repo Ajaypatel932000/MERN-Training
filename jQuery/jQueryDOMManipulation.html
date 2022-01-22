@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          
+            $("#btn1").click(function(){
+                 
+                  alert("Text :"+$("#para").text())
+            }),
+            $("#btn2").click(function(){
+                 
+                alert("HTML :"+$("#para").html())
+
+
+            })
+            $("#btn3").click(function(){
+                alert("Value is "+$("#nm").val());
+            })
+            
+        })
+    </script>
+</head>
+<body>
+    <p id="para">My name is Ajay and I am not <b>innocent</b>.Please give me <i>pardon</i>.</p>
+    <button  id="btn1">Show Text</button><br>
+    <button id="btn2">Show Html</button><br>
+<br>
+   Name: <input type="text" id="nm"><br>
+    <button id="btn3">Get value</button>
+</body>
+</html>
