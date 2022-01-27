@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         
+         function fun(){
+             return new Promise(function(resolve,reject){
+                 const error=true;
+                 if(!error)
+                 {
+                     console.log("You are in fun | resolve");
+                     resolve();
+                 }else
+                 {
+                     console.log("You are in fun  | reject ");
+                     reject("Sorray some error ");
+                 }
+             },2000);
+         }
+
+          fun().then(function(){
+              console.log("Request Successfully completed .resolve block");
+          }).catch(function(error){
+              console.log("You are in catch Block ")
+          })
+    </script>
+    
+</body>
+</html>
