@@ -1,0 +1,22 @@
+Video link : https://youtu.be/oeDhoYiyhuM
+
+sudo mongod --fork --config /etc/mongodb.conf
+
+service --status-all
+sudo systemctl start mongodb
+sudo systemctl stop mongodb
+
+ stop the service of mongodb
+1. service mongodb stop
+then set db path  /var/lib/mongodb   : -> find this path /etc/m*.confi file opne vi mongod.confi
+2. sudo mongod --dbpath /var/lib/mongodb --replSet Ajayrep  --bind_ip localhost
+
+3. open other terminal put this command : service mongodb start
+
+  use admin;
+  rs.status()
+  rs.initiate()
+
+
+
+Failed to set up listener: SocketException: Address already in use shutting down with code:48

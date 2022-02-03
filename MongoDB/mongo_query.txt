@@ -1,0 +1,708 @@
+> db.employee.find().pretty()
+db.employees.insertMany([
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf1"),
+	"name" : "Any",
+	"age" : "21",
+	"status" : "busy",
+	"price" : 30
+},
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf2"),
+	"name" : "Tony",
+	"age" : "25",
+	"status" : "busy",
+	"price" : 30
+},
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf3"),
+	"name" : "Bobby",
+	"age" : "28",
+	"status" : "online",
+	"price" : 40
+},
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf4"),
+	"name" : "Sonny",
+	"age" : "28",
+	"status" : "away",
+	"price" : 25
+},
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf5"),
+	"name" : "Cher",
+	"age" : "20",
+	"status" : "online",
+	"price" : 40
+}
+])
+=======================================================
+db.employee.aggregate(
+
+    [
+       { $match:  {
+                      status:"online"
+                 }
+       },
+       {
+           $group:{_id:"$status",sum:{$sum:"$price"}}
+       }
+    ]
+).pretty()
+
+1. $match : filter record based on status is "online"
+2. $group : group record 
+3. $sum   : calculate sum of group record
+
+=====================================================
+2 : db.employee.count({status:"online"})
+ count spcific list
+3 :  db.employee.distinct("status")
+ It will return distinct : [ "busy", "online", "away" ]
+4 :  db.employee.aggregate(
+
+     [
+         {$match:{}},
+         {$group:{_id:"$name",total:{$sum:"$price"}}}
+     ]
+) 
+{ "_id" : "Cher", "total" : 40 }
+{ "_id" : "Sonny", "total" : 25 }
+{ "_id" : "Bobby", "total" : 40 }
+{ "_id" : "Tony", "total" : 30 }
+{ "_id" : "Any", "total" : 30 }
+
+5 :  db.employee.aggregate(
+
+     [
+         {$match:{}},
+         {$group:{_id:"$status",total:{$sum:"$price"}}}
+     ]
+) 
+
+{ "_id" : "away", "total" : 25 }
+{ "_id" : "online", "total" : 80 }
+{ "_id" : "busy", "total" : 60 }
+
+6 :  db.employee.aggregate(
+
+     [
+         {$match:{age:{$gt:"22"}}},
+         {$group:{_id:"$status",total:{$sum:"$price"}}}
+     ]
+) 
+
+db.employee.find().pretty()
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf1"),
+	"name" : "Any",
+	"age" : "21",
+	"status" : "busy",
+	"price" : 30
+}
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf2"),
+	"name" : "Tony",
+	"age" : "25",
+	"status" : "busy",
+	"price" : 30
+}
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf3"),
+	"name" : "Bobby",
+	"age" : "28",
+	"status" : "online",
+	"price" : 40
+}
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf4"),
+	"name" : "Sonny",
+	"age" : "28",
+	"status" : "away",
+	"price" : 25
+}
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf5"),
+	"name" : "Cher",
+	"age" : "20",
+	"status" : "online",
+	"price" : 40
+}
+{
+	"_id" : ObjectId("61f282e3723e7ee369ecea06"),
+	"name" : "Ajay",
+	"age" : "44",
+	"status" : "away",
+	"price" : 50
+}
+
+$match will be filter reocrd age grater 22 and 
+group by status  and sum of that group by
+
+output
+
+{ "_id" : "away", "total" : 75 }
+{ "_id" : "online", "total" : 40 }
+{ "_id" : "busy", "total" : 30 }
+
+7 : db.employee.aggregate(
+
+     [
+         {$match:{age:{$gt:"22"}}},
+         {$group:{_id:"$status",total:{$sum:"$price"}}},
+         {$sort:{total:-1}}
+     ]
+) 
+
+filter reocrd 
+group record 
+and sort desc order
+
+8 : db.employee.aggregate(
+
+     [
+         {$match:{ name:{$in:["Any","Sonny","Tony"] } } } ,
+         {$group:{_id:"$status",total:{$sum:"$price"}}},
+          
+     ]
+) 
+
+{ "_id" : "away", "total" : 25 }
+{ "_id" : "busy", "total" : 60 }
+
+db.employee.aggregate(
+
+     [
+         {$group:{ _id:"$status", count:{$sum:1},
+                   total:{ 
+                          $sum:"$price"
+                         }
+                 }
+         },
+          
+     ]
+) 
+
+{ "_id" : "away", "count" : 2, "total" : 75 }
+{ "_id" : "online", "count" : 2, "total" : 80 }
+{ "_id" : "busy", "count" : 2, "total" : 60 }
+
+
+db.employee.aggregate(
+
+     [
+         {$group:{ _id:"$status", count:{$sum:1},
+                   totalAmount:{ 
+                          $sum:{$sum:['$price','$fess']}
+                         }
+                 }
+         },
+          
+     ]
+) 
+
+{ "_id" : "away", "count" : 2, "totalAmount" : 875 }
+{ "_id" : "online", "count" : 2, "totalAmount" : 480 }
+{ "_id" : "busy", "count" : 2, "totalAmount" : 260 }
+
+$avg: get average of amount
+
+db.employee.aggregate(
+
+     [
+         {$group:{ _id:"$status", count:{$sum:1},
+                   totalAmount:{ 
+                          $sum:{$sum:['$price','$fess']}
+                         },
+                    averageAmount :{
+                        $avg:{$sum:['$price','$fess']}
+                        }
+                 }
+         },
+          
+     ]
+) 
+
+
+{
+	"_id" : "away",
+	"count" : 2,
+	"totalAmount" : 875,
+	"averageAmount" : 437.5
+}
+{
+	"_id" : "online",
+	"count" : 2,
+	"totalAmount" : 480,
+	"averageAmount" : 240
+}
+{ "_id" : "busy", "count" : 2, "totalAmount" : 260, "averageAmount" : 130 }
+
+Operation with array
+
+db.employee.find().pretty()
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf1"),
+	"name" : "Any",
+	"age" : "21",
+	"status" : "busy",
+	"price" : 30,
+	"fess" : 100,
+	"skill" : [
+		"Java",
+		"Python",
+		"PHP"
+	]
+}
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf2"),
+	"name" : "Tony",
+	"age" : "25",
+	"status" : "busy",
+	"price" : 30,
+	"fess" : 100,
+	"skill" : [
+		"Java",
+		"Python",
+		"PHP"
+	]
+}
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf3"),
+	"name" : "Bobby",
+	"age" : "28",
+	"status" : "online",
+	"price" : 40,
+	"fess" : 200,
+	"skill" : [
+		"C",
+		"C++",
+		"PHP"
+	]
+}
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf4"),
+	"name" : "Sonny",
+	"age" : "28",
+	"status" : "away",
+	"price" : 25,
+	"fess" : 400,
+	"skill" : [
+		"Node.js",
+		"Python",
+		"C"
+	]
+}
+{
+	"_id" : ObjectId("61f1603dd6bcfaf83e2c4cf5"),
+	"name" : "Cher",
+	"age" : "20",
+	"status" : "online",
+	"price" : 40,
+	"fess" : 200,
+	"skill" : [
+		"C",
+		"C++",
+		"PHP"
+	]
+}
+{
+	"_id" : ObjectId("61f282e3723e7ee369ecea06"),
+	"name" : "Ajay",
+	"age" : "44",
+	"status" : "away",
+	"price" : 50,
+	"fess" : 400,
+	"skill" : [
+		"Node.js",
+		"Python",
+		"C"
+	]
+}
+
+1. $unwind  : it is used to  create document for each 
+  entry in array 
+
+
+db.employee.aggregate([
+    {$unwind:"$skill"}
+])
+
+=> input
+{ "_id" : 1, "item" : "myItem1", sizes: [ "S", "M", "L"] }
+
+=> output
+{ "_id" : 1, "item" : "myItem1", sizes:"S"}
+{ "_id" : 1, "item" : "myItem1", sizes:"M"}
+{ "_id" : 1, "item" : "myItem1", sizes:"L"}
+
+
+
+db.inv.insertMany([
+{ "_id" : 1, "item" : "myItem1", sizes: [ "S", "M", "L"] },
+{ "_id" : 2, "item" : "myItem2", sizes: [ "XS", "M", "XL"] },
+{ "_id" : 3, "item" : "myItem3" }
+])
+
+it document does not contain array it will be lost 
+if we preserveNUllAndEmpty array below things can be document
+
+db.inv.aggregate([{
+
+        $unwind:{
+           
+               path:"$sizes",
+               includeArrayIndex:"arrayIndex"
+               
+        }
+    }
+])
+
+1. Match : Used to match documents (like SQL where clause)
+ 
+ db.employees.aggregate([
+     {
+         $match:{
+              dept:"Admin"
+         }
+     }
+ ])
+ db.employees.aggregate({
+          $match:{dept:"Admin"}
+     }).pretty()
+
+2. Project: Used to populate specific field  value(s)
+   db.employees.aggregate([
+       {$match:{dept:"Admin"}},
+       {$project:{name:1,dept:1}}
+   ])
+   db.employees.aggregate({$project:{_id:0,name:1}})
+
+3. Group :
+   db.employees.aggregate([
+         {$group:{"_id":'$dept'}}
+       ])
+
+   db.employees.aggregate(
+        {$group:{"_id":'$dept'}}
+    )
+   
+   db.employees.aggregate([
+       {
+           $group:{
+               _id:null,
+               totalAge:{$sum:"$age"}
+           }
+       }
+   ])
+
+ 4 : sum : count or sum of value inside group 
+
+   db.employees.aggregate([
+       {$group:{_id:"$dept",noOfdep:{$sum:1}}}
+   ])
+
+ 5 : avg
+   count noof employee in particular dep and avg exp of that dep 
+
+   db.employees.aggregate([
+       { 
+           $group:{
+                     _id:"$dept",
+                     "noOfEmp":{$sum:1},
+                     "avgExp":{$avg:"$totalExp"}
+                  }
+       }
+   ])
+
+6 : minimum : find minimum value of a field in each group
+   
+   db.employees.aggregate([
+       {
+           $group:{
+                     _id:"$dept",
+                     noOfemp:{$sum:1},
+                     minExp:{$min:"$totalExp"}
+                  }
+       }
+   ])
+  
+7 : maximum : find maximum value of a field in each group
+   
+   db.employees.aggregate([
+       {
+           $group:{
+                     _id:"$dept",
+                     noOfemp:{$sum:1},
+                     max:{$max:"$totalExp"}
+
+                  }
+       }
+   ])
+8 : Getting specific field's value from first and last document 
+    of each group : Work well when document result sorted;
+    
+    Using $first and  $last keyword
+
+  db.employees.aggregate([
+
+      {$group:
+         {
+            _id:"$dept",
+            firstVal:{$first:"$name"},
+            lastVal:{$last:"$name"}
+         }
+      }
+  ])
+ 
+
+9 : Maximum with Minimum value 
+   
+   db.employees.aggregate([
+       {
+           $group:
+           {
+             _id:"$dept",
+             noOfemp:{$sum:1},
+             maxExp:{$max:"$totalExp"},
+             minExp:{$min:"$totalExp"}     
+           }
+       }
+   ]).pretty()
+
+10 : push and addToSet
+Push adds a ﬁeld's value form each document in group to an array used to project data in
+array format, 
+addToSet is simlar to push but it omits duplicate values.
+
+
+
+ db.employees.aggregate([
+      {
+          $group:
+          {
+              _id:"$dept",
+              arrPush:{$push:"$age"},
+              addToSet:{$addToSet:"$age"}
+ 
+          }
+      }
+])
+
+11. unwind : used to create multiple in-memory documents for each value in 
+    the spcified array type field.
+
+    db.employees.aggregate([
+        {
+            $match:{"name":"Ajay"}
+        }
+        ,
+        {
+            $unwind:"$languages"
+        }
+    ])
+
+ 12 : sorting 
+
+    db.employees.aggregate([
+        {$match:{dept:"HR"}},
+        {$project:{name:1,"dept":1}},
+        {$sort:{name:1}}
+    ])
+
+  13. skip :  
+
+  db.employees.aggregate([
+      {$match:{dept:"Admin"}},
+      {$project:{"name":1,"dept":1}},
+      {$sort:{"name":1}},
+      {$skip:1}
+  ])
+
+  14 : limit
+
+  db.employees.aggregate([
+
+      {$match:{dept:"HR"}},
+      {$project:{name:1,dept:1}},
+      {$limit:2},
+      {$sort:{name:-1}}
+  ])
+
+  15 : comparison operator in projection
+
+   db.employees.aggregate([
+       {$match:{dept:"HR"}},
+       {
+           $project:{"name":1,"dept":1,
+           age:{$gt:["$age",20]} 
+       }}
+   ]) 
+    
+
+   16 : comparison operator in match 
+   [List of comparison operators: $cmp, $eq, $gt, $gte, $lt, $lte, and $ne]
+
+    db.employees.aggregate([
+        {$match:{dept:"HR",age:{$gt:20}}},
+        {$project:{name:1,dept:1}}
+    ])  
+
+    17 :Boolean aggregation opertor in projection
+
+     db.employees.aggregate([
+         {$match:{dept:"HR"}},
+         {$project:{"name":1,"dept":1,age:{$and:[
+                                          { $gt:["$age",20]},
+                                           {$lt:["$age",25]}     
+                                                
+                                                ]
+                                          }
+         }}
+     ])
+
+     18 : Boolean aggregation operator in match
+
+==================================================
+
+Get Sample data
+
+get ramdom data from certain collection 
+
+db.employees.aggregate({
+    $sample:{size:1}
+})
+
+
+
+================================================================================
+
+$gt and $lt
+
+db.inventory.find({
+    qty:{$gt:40,$lt:70}
+}).pretty()
+
+$ne 
+
+db.inventory.find({
+    qty:{$ne:45}
+}).pretty()
+
+$in
+
+db.inventory.find({
+    qty:{$in:[100,45]}
+}).pretty()
+
+$nin 
+
+db.inventory.find({
+    qty:{$nin:[100,45]}
+}).pretty()
+
+$and
+
+db.inventory.find({
+   
+   $and:[
+       {qty:50},
+       {item:/^n/}
+   ]
+
+}).pretty()
+
+db.inventory.find({
+    $and:[
+        {qty:{$gt:40}},
+        {status:"A"}
+    ]
+}).pretty();
+
+$not
+display all document find qty not less than or equal 50 
+db.inventory.find({
+    qty:
+    {$not:{$lte:50}}
+}).pretty()
+
+
+$or
+
+db.inventory.find({
+    $or:[
+        {qty:50},
+        {qty:100},
+        {status:"A"}
+    ]
+}).pretty()
+
+$nor
+
+db.inventory.find({
+    $nor:[
+        {qty:50},
+        {qty:100},
+        {status:"A"}
+    ]
+}).pretty() 
+
+
+$exists
+
+db.inventory.find({
+    "education.tech":{$exists:true}
+}).pretty()
+
+
+$regex
+
+db.inventory.find({
+    item:{$regex:"p.*"}
+}).pretty()
+
+IgonreCase
+
+db.inventory.find({
+    item:{$regex:"p.*",$options:'i'}
+}).pretty()
+
+$all
+
+db.inventory.find({
+    language:{$all:["Hindi","Gujrati","English"]}
+}).pretty()
+
+
+
+db.inventory.find({
+    "education.tech":"MCA"
+}).pretty()
+
+
+db.inventory.find({
+    "size.uom":"cm"
+}).pretty()
+
+
+db.inventory.find({
+    "size.h":{$gt:20}
+})
+
+db.inventory.find({
+    status:{$in:["A","D"]}
+}).pretty()
+
+db.inventory.find({
+    "instock.qty":{$lt:20}
+}).pretty()
+
+db.inventory.find({
+    "instock.1.qty":{$lt:10}
+}).pretty()
+
+
+db.inventory.find(
+    {status:"A" },
+    {item:1,"size.h":1}
+    )
