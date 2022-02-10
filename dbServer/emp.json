@@ -1,0 +1,46 @@
+{
+  "emp": [
+    {
+      "id": 1,
+      "ename": "Ajay",
+      "add": "abc",
+      "city": "Nadiad"
+    },
+    {
+      "0": {
+        "id": "",
+        "ename": "",
+        "add": "",
+        "city": ""
+      },
+      "id": "2",
+      "ename": "KARAN",
+      "city": "Naidad",
+      "add": "abc"
+    },
+    {
+      "0": {
+        "id": "",
+        "ename": "",
+        "add": "",
+        "city": ""
+      },
+      "id": "4",
+      "ename": "abc",
+      "add": "abc",
+      "city": "kdb"
+    },
+    {
+      "id": "7",
+      "ename": "q",
+      "add": "q",
+      "city": "q"
+    },
+    {
+      "id": "6",
+      "ename": "Parth",
+      "add": "Isanpur",
+      "city": "Ahemdabad"
+    }
+  ]
+}
