@@ -1,0 +1,8 @@
+npm install react-router-dom@6
+npm install axios
+
+
+
+below command run current directory
+json-server filename.json --port 2000
+

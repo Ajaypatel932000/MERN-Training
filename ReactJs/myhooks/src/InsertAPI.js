@@ -11,20 +11,32 @@ class InsertAPI extends Component {
         showMeg:''
     }
     }
-    
+  
     onSubmit=(e)=>{
         e.preventDefault();
         const URL="http://localhost:3009/emp";
         console.log("emp :",this.state.Employee);
-        axios.post(URL,this.state.Employee)
-        .then(response=>{
-            console.log(response);
-            if(response.statusText==="Created")
-            {
-                this.setState({showMeg:"Recored Inserted "})
-            }
-        });
+        // axios.post(URL,this.state.Employee)
+        // .then(response=>{
+        //     console.log(response);
+        //     if(response.statusText==="Created")
+        //     {
+        //         this.setState({showMeg:"Recored Inserted "})
+        //     }
+        // });
 
+           axios({
+               url:URL,
+               method:"POST",
+               data:this.state.Employee
+           })
+           .then(res=>{
+               //response
+               console.log(res);
+           })
+           .catch(err=>{
+               console.log("err ",err);
+           })
        
     }
     onChangeHandler=(e)=>
@@ -61,7 +73,7 @@ class InsertAPI extends Component {
               <input type="text" className='form-control' name="city" value={Employee.city} onChange={this.onChangeHandler} />
 
           </div>
-          <button>Submit</button>
+          <button className='btn btn-success'>Submit</button>
          </form>
         
       </div>
