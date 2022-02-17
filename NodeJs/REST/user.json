@@ -1,0 +1,39 @@
+{
+    "user": [
+        {
+          "id": 1,
+          "name": "Ajay",
+          "password": "admin",
+          "status": "active",
+          "did": 1
+        },
+        {
+          "id": 2,
+          "name": "Jay",
+          "password": "admin",
+          "status": "active",
+          "did": 2
+        },
+        {
+          "id": 3,
+          "name": "Mansi",
+          "password": "admin",
+          "status": "disabled",
+          "did": 1
+        },
+        {
+          "id": 4,
+          "name": "Rahul",
+          "password": "admin",
+          "status": "disabled",
+          "did": 3
+        },
+        {
+          "id": 5,
+          "name": "Vijay",
+          "password": "admin",
+          "status": "disabled",
+          "did": 4
+        }
+      ]
+}

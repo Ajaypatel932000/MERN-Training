@@ -6,7 +6,9 @@ import MyRoute from './MyRoute';
 function App() {
   return (
     <div className="App">
-      {/* <Routing/> */}
+     
+       {/* <Routing/> */}
+
       <MyRoute/>
     </div>
   );

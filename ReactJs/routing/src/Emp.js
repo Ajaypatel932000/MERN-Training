@@ -9,9 +9,10 @@ function Emp() {
        <h2>Your Employee ID is {eid}</h2>
        <h2>Employee Name is : {ename}</h2>
     <nav>
-    <Link to="/about">About</Link>
-    <Link to="/">Home</Link>
- 
+    <div className='nav-list'>    
+        <Link to="/about" >About</Link>
+        <Link to="/">Home</Link>
+    </div>
    </nav>
     </div>
 

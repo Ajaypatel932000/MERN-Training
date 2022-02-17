@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactTable from "react-table";  
-
+import {Link} from 'react-router-dom'
 function Vendor() {
     const empData = [{   name: 'Ayaan',   age: 26  },
                   {  name: 'Ahana',   age: 22  },
@@ -12,6 +12,15 @@ function Vendor() {
              
   return (
     <div>
+       <div className="list-group col-1 d-grid">
+          <ul className=''>
+             <li><Link className='btn btn-outline-primary gap-2 d-md-block' to="/dashboard">Dashboard</Link></li> 
+             <li><Link className='btn btn-outline-primary gap-2 d-md-block' to="/client">Client</Link> </li>
+              <li><Link className='btn btn-outline-primary gap-2 d-md-block' to="/vendor">Vendor</Link></li>
+        
+          </ul>    
+          </div>          
+     
         <h1>Vendor Component</h1>
         <table className='table table-striped'>
               <thead>

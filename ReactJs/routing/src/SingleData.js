@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { useParams } from 'react-router-dom'
+import { useParams,Link } from 'react-router-dom'
 function SingleData() {
     const{eid}=useParams();
     const[empData,setEmployee]=useState([])
     useEffect(()=>{
-         axios.get(`http://localhost:3006/emp/${eid}`)
+         axios.get(`http://localhost:3003/emp/${eid}`)
         .then(
             res=>(console.log(res.data),
             setEmployee([res.data]),
@@ -14,9 +14,9 @@ function SingleData() {
         ).catch(e=>console.log(e))
     },[])
 
-  return (
+    return (
     <div>
-        <h1>Single Data </h1>
+        <h1>Employee Data </h1>
         {/* {eid} */}
         {console.log("Render Executed...")}
         <table className='table table-striped'>
@@ -48,7 +48,9 @@ function SingleData() {
 
           </table>
      
-       
+          <Link to="/" className='btn btn-outline-primary '>Logout</Link>
+          <Link to="/client" className='btn btn-outline-primary '>Back</Link>
+
        
     </div>
   )

@@ -1,0 +1,22 @@
+{
+ "login":[
+ 
+   {
+    "userId":"admin1",
+    "password":"pwd123"
+   },
+   {
+    "userId":"admin2",
+    "password":"pwd124"
+   },
+   {
+    "userId":"admin3",
+    "password":"pwd125"
+   },
+   {
+    "userId":"admin4",
+    "password":"pwd126"
+   }
+   
+ ]
+}
