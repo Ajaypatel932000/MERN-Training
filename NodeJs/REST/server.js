@@ -7,17 +7,34 @@ const { endianness } = require('os');
 app.get('/user',function(req,res){
         fs.readFile('./user.json',function(error,data){
 
-            res.append('Content-Type', 'application/json');
-            res.append('Accept', 'application/json');
-            res.append('Access-Control-Allow-Origin', 'http://localhost:3002');
-            res.append('Access-Control-Allow-Credentials', 'true');
-            res.append('GET', 'POST', 'OPTIONS')
+            res.header('Content-Type', 'application/json');
+            res.header('Accept', 'application/json');
+            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('GET', 'POST', 'OPTIONS')
 
             console.log(data);
          //   res.write(data);
             res.end(data);
         })
 })
+var user={
+    "id": 10,
+    "name": "Jay",
+    "password": "admin",
+    "status": "active",
+    "did": 1
+  }
+  app.post("/addUser",function(req,res){
+   
+     fs.readFile("user.json",function(err,data){
+         data=JSON.parse(data);
+         data['user']=user;
+         console.log(data);
+         res.send(JSON.stringify(data));
+     })
+  })
+
 
 var server=app.listen(8083,function(){
     var host=server.address().address;
