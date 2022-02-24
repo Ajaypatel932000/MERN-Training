@@ -40,15 +40,16 @@ function Login() {
         console.log("passwrod", password);
     }
     function validateLogin() {
-    //   for (const key in loginDetails) {
-    //      //   console.log("Key",key ," value",loginDetails[key])
-      
-    //   }
       loginDetails.forEach((item)=>{
                myUserID.email=email;
+            console.log("validation");
         if (item.email === email && item.password === password && item.isAdmin === true) {
+          //  console.log("Admin");
              navigate("/product");
-        } else if (item.email === email && item.password === password && item.isAdmin === false) {
+
+
+        } else if (item.email === email && item.password === password && item.isAdmin === false) {           
+          //  console.log("User");
             navigate("/userDashboard")        
         } 
       })
@@ -56,7 +57,8 @@ function Login() {
 
     return (
         <>
-            <div className="Login">
+            <div className="Login container">
+                <h1>Login</h1>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group size="lg" controlId="email">
                         <Form.Label>Email</Form.Label>

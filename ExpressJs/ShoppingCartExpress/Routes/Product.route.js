@@ -38,6 +38,7 @@ productRoute.route('/addProduct').post(function(req,res){
 
 productRoute.route('/productById/:id').get(function(req,res){
      let id=req.params.id;
+     
      productModel.findById(id,function(err,product){
 
          res.json(product);

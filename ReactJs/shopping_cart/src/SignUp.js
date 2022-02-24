@@ -104,7 +104,7 @@ function SignUp() {
 
     return (
         <>
-            <div className="form">
+            <div className="form container">
                 <div>
                     <h1>User Registration</h1>
                 </div>

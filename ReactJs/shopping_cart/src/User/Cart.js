@@ -11,7 +11,6 @@ export default function Cart() {
   
   return (
     <div style={{ display: "block", padding: 30 }}>
-      <h4>How to create ShoppingCart Button in ReactJS?</h4>
       <div>
         <Badge color="secondary" badgeContent={itemCount}>
           <ShoppingCartIcon />{" "}

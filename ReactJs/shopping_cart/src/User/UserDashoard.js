@@ -28,6 +28,8 @@ class UserDashoard extends Component {
     }
     placeHandler()
     {
+        if(this.state.cartArray.length>0)
+        {
          axios.post("http://localhost:8282/orders/addOrder",
          {
             "userId":myUserID.email,
@@ -38,6 +40,7 @@ class UserDashoard extends Component {
              console.log(res);
 
          }).catch(err=>console.log(err));
+        }
        
     }
     getProductDetails = () => {
@@ -109,7 +112,7 @@ class UserDashoard extends Component {
                                     <Link to="/order" ><span className="glyphicon glyphicon-log-in"></span>
                                       <button className="btn btn-success me-3" onClick={this.placeHandler}>View Cart </button>
                                     </Link>
-                                    <Link to="/login" ><span className="glyphicon glyphicon-log-in"></span><button className="btn btn-success me-3">Login</button> </Link>
+                                    <Link to="/login" ><span className="glyphicon glyphicon-log-in"></span><button className="btn btn-success me-3">Logout</button> </Link>
                                 </div>
 
                             </div>
@@ -132,6 +135,7 @@ class UserDashoard extends Component {
                         else if(val.pname.toLowerCase().includes(this.state.search.toLowerCase()))
                         {
                             return val;
+                            
                         }else if(val.desc.toLowerCase().includes(this.state.search.toLowerCase()))
                         {
                             return val;
